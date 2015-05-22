@@ -1,5 +1,11 @@
-in_file = 'multi_pdf.pdf'
-range = 1..2
-range_s = range.to_s.gsub('..', '-')
-`pdftk #{in_file} cat #{range_s} output pages#{range_s}.pdf`
-# res = `cmd`.chomp
+# Splits PDFs into seperate pages
+# ---------------------------------------------------------------------------------
+class PdfSplitter
+  def split(file, pages)
+    `pdftk #{file} cat #{pages} output pages#{pages}.pdf`
+  end
+end
+
+# The below is a test
+# ---------------------------------------------------------------------------------
+splitter = PdfSplitter.new.split('./multi_pdf.pdf', 3)
